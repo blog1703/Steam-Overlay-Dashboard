@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Steam Speed Dial — Custom Start Page for Steam Overlay</title>
+    <meta name="description" content="Custom start page for Steam Overlay browser with speed dial tiles, internet radio, Google search, weather, quick access to Telegram, Discord, YouTube Music, Yandex Music, VK. Export/import bookmarks, RU/EN language switch.">
+    <meta name="keywords" content="Steam Overlay, Speed Dial, start page, tiles, radio, gaming, customization, Steam Dashboard">
+    <meta name="author" content="blog1703">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (for social media and messengers) -->
+    <meta property="og:title" content="Steam Speed Dial — Custom Start Page for Steam Overlay">
+    <meta property="og:description" content="Custom start page for Steam Overlay browser with speed dial tiles, internet radio, Google search, weather, quick access to Telegram, Discord, YouTube Music, Yandex Music, VK. Export/import bookmarks, RU/EN.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/blog1703/Steam-Overlay-SpeedDial/refs/heads/main/images/view_speedial.gif">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://steam-overlay-speed-dial.vercel.app/en.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Steam Speed Dial — Custom Start Page for Steam Overlay">
+    <meta name="twitter:description" content="Custom start page for Steam Overlay browser with speed dial tiles, internet radio, Google search, weather, quick access to Telegram, Discord, YouTube Music, Yandex Music, VK.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/blog1703/Steam-Overlay-SpeedDial/refs/heads/main/images/view_speedial.gif">
+    
+    <link rel="canonical" href="https://steam-overlay-speed-dial.vercel.app/en.html">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Language switcher */
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+        
+        .lang-switch a {
+            background: #f1f5f9;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: #2563eb;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .lang-switch a:hover {
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eaeef2;
+            color: #1a1a2e;
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            color: #1a1a2e;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: #334155;
+        }
+        
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 1.5rem;
+            color: #334155;
+        }
+        
+        li {
+            margin: 0.5rem 0;
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.875rem;
+            color: #0f172a;
+        }
+        
+        pre {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: #0f172a;
+        }
+        
+        blockquote {
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            color: #334155;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1a1a2e;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 500;
+            margin: 1rem 0;
+            transition: all 0.2s;
+        }
+        
+        .github-btn:hover {
+            background: #2563eb;
+            text-decoration: none;
+            transform: scale(1.02);
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+        
+        hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            h2 {
+                font-size: 1.25rem;
+            }
+            pre {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <a href="/">🇷🇺 Русская версия</a>
+        </div>
+        
+        <h1>🎮 Steam Speed Dial</h1>
+        <p>Custom Start Page for Steam Overlay Browser | Features site tiles, radio with global controls, Google search, weather, Telegram, Discord, YouTube Music, Yandex Music, VK. Supports bookmark import/export and RU/EN languages.</p>
+        
+        <a href="https://github.com/blog1703/Steam-Overlay-SpeedDial" class="github-btn" target="_blank">📦 GitHub — download the project</a>
+        
+        <hr>
+        
+        <h2>🛠️ Installation</h2>
+        
+        <h3>1️⃣ Save the file</h3>
+        <p>Download or copy the <code>dashboard.html</code> file and save it somewhere convenient.<br>
+        <em>Example:</em> create a folder named <code>SteamOverlayDashboard</code> inside your Documents folder:</p>
+        <pre><code>C:\Users\USERNAME\Documents\SteamOverlayDashboard\dashboard.html</code></pre>
+        
+        <h3>2️⃣ Copy the file path</h3>
+        <p>Right-click on <code>dashboard.html</code> → select <strong>‘Copy as path’</strong>.<br>
+        You should get a string like this:</p>
+        <pre><code>C:\Users\PC\Documents\SteamOverlayDashboard\dashboard.html</code></pre>
+        
+        <h3>3️⃣ Close Steam</h3>
+        <blockquote>⚠️ <strong>Important:</strong> Steam must be <strong>fully closed</strong>, otherwise changes to the settings file won’t be saved.</blockquote>
+        
+        <h3>4️⃣ Open the Steam settings file</h3>
+        <p>Navigate to the path:</p>
+        <pre><code>C:\Program Files (x86)\Steam\userdata\XXXXXXXX\config\localconfig.vdf</code></pre>
+        <ul>
+            <li><code>XXXXXXXX</code> — this is your folder named with your Steam ID numbers</li>
+            <li>Open the file using <strong>Notepad</strong> or <strong>Notepad++</strong></li>
+        </ul>
+        
+        <h3>5️⃣ Add a line with your homepage URL</h3>
+        <p>Locate the code line containing <code>"GameOverlayHomePage"</code> and replace <code>"https://www.google.com/"</code> with:</p>
+        <pre><code>"GameOverlayHomePage" "file:/C:/Users/USERNAME/Documents/SteamOverlayDashboard/dashboard.html"</code></pre>
+        
+        <img src="https://raw.githubusercontent.com/blog1703/Steam-Overlay-Dashboard/refs/heads/main/images/screenshot.jpg" alt="Code line where you need to make the replacement">
+        <p><em>code line where you need to make the replacement</em></p>
+        
+        <p>🔑 <strong>Key tip:</strong><br>
+        At the start of the path, use <strong>a single slash</strong> — <code>file:/</code>, not three (<code>file:///</code>).<br>
+        Steam Overlay blocks <code>file:///</code>, but <strong>does not block</strong> <code>file:/</code>.</p>
+        
+        <h3>6️⃣ Save the file and close the editor</h3>
+        
+        <h3>7️⃣ Launch Steam and verify</h3>
+        <ul>
+            <li>Start any game with overlay support (Shift+Tab)</li>
+            <li>Open the browser in the overlay — you will see your new Home page</li>
+            <li>If the page doesn’t open automatically, click the home icon 🏠</li>
+        </ul>
+        
+        <h3>Here’s how the Home page will look</h3>
+        <img src="https://raw.githubusercontent.com/blog1703/Steam-Overlay-Dashboard/refs/heads/main/images/dashboard1.jpg" alt="Home page in Steam browser">
+        <p><em>Steam browser home page</em></p>
+        
+        <hr>
+        
+        <h2>🎨 Customization</h2>
+        <p>The file <code>dashboard.html</code> can be edited as you wish:</p>
+        <ul>
+            <li>➕ Add your websites to tiles</li>
+            <li>🎵 Change radio stations</li>
+            <li>🎨 Change colors, fonts, animations</li>
+            <li>🌐 Add new service icons</li>
+        </ul>
+        <p>The weather widget in this form was obtained from the website <a href="https://elfsight.com" target="_blank">elfsight.com</a> after registration.<br>
+        Replace the ID in the code with your own in the line here:</p>
+        <img src="https://raw.githubusercontent.com/blog1703/Steam-Overlay-Dashboard/refs/heads/main/images/id_widget.png" alt="ID Widget">
+        <p><em>Change the ID Widget to your own after registration</em></p>
+        <p>In general, you can install any weather widget, not necessarily from this site.</p>
+        <p>Everything is located inside one file — it is very easy to change it, you can use Chat GPT, DeepSeek.</p>
+        
+        <hr>
+        
+        <h2>➕ Adding new quick link icons</h2>
+        <p>You can easily add any service to the icon bar (Telegram, Discord, YouTube Music, Yandex Music, VK).</p>
+        
+        <h3>📌 Link to the GitHub project where you can download the template</h3>
+        <p><a href="https://github.com/blog1703/Steam-Overlay-SpeedDial" target="_blank">https://github.com/blog1703/Steam-Overlay-SpeedDial</a></p>
+        
+        <hr>
+        
+        <h2>💡 Author's note</h2>
+        <p>The file is customizable: change icons, add your own widgets, and change the color scheme.<br>
+        If you'd like to share your own version or improve the project, you're welcome to open source it.</p>
+        
+        <p><strong>Enjoy using it!</strong> 🎮</p>
+        
+        <div class="footer">
+            <p>© 2025 blog1703 · Open source project · <a href="https://github.com/blog1703/Steam-Overlay-SpeedDial" target="_blank">GitHub</a></p>
+        </div>
+    </div>
+</body>
+</html>

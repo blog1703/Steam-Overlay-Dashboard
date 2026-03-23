@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Steam Speed Dial — стартовая страница для Steam Overlay</title>
+    <meta name="description" content="Кастомная стартовая страница для браузера Steam Overlay с плитками сайтов, радио, поиском Google, Telegram, Discord, YouTube Music, Yandex Music, VK. Экспорт/импорт закладок, RU/EN.">
+    <meta name="keywords" content="Steam Overlay, Speed Dial, стартовая страница, плитки, радио, гейминг, кастомизация, Steam Dashboard">
+    <meta name="author" content="blog1703">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (для соцсетей и мессенджеров) -->
+    <meta property="og:title" content="Steam Speed Dial — стартовая страница для Steam Overlay">
+    <meta property="og:description" content="Кастомная страница для браузера Steam Overlay с плитками, радио, поиском Google, Telegram, Discord и музыкой. Экспорт/импорт закладок, RU/EN.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/blog1703/Steam-Overlay-SpeedDial/refs/heads/main/images/view_speedial.gif">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://steam-overlay-speed-dial.vercel.app">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Steam Speed Dial — стартовая страница для Steam Overlay">
+    <meta name="twitter:description" content="Кастомная стартовая страница для браузера Steam Overlay с плитками, радио, поиском Google, Telegram, Discord и музыкой.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/blog1703/Steam-Overlay-SpeedDial/refs/heads/main/images/view_speedial.gif">
+    
+    <link rel="canonical" href="https://steam-overlay-speed-dial.vercel.app">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Типографика */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eaeef2;
+            color: #1a1a2e;
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            color: #1a1a2e;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: #334155;
+        }
+        
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Списки */
+        ul, ol {
+            margin: 1rem 0 1rem 1.5rem;
+            color: #334155;
+        }
+        
+        li {
+            margin: 0.5rem 0;
+        }
+        
+        /* Блоки кода */
+        code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.875rem;
+            color: #0f172a;
+        }
+        
+        pre {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: #0f172a;
+        }
+        
+        /* Цитаты */
+        blockquote {
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            color: #334155;
+        }
+        
+        /* Картинки */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        /* Кнопка */
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1a1a2e;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 500;
+            margin: 1rem 0;
+            transition: all 0.2s;
+        }
+        
+        .github-btn:hover {
+            background: #2563eb;
+            text-decoration: none;
+            transform: scale(1.02);
+        }
+        
+        /* Сетка фич */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        
+        .feature-card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card span {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Подвал */
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+        
+        hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            h2 {
+                font-size: 1.25rem;
+            }
+            pre {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Steam Speed Dial</h1>
+        <p>Кастомная стартовая страница для браузера Steam Overlay | Custom start page for Steam Overlay browser</p>
+        <p>Плитки сайтов, радио с глобальным управлением, поиск Google, погода, Telegram, Discord, YouTube Music, Yandex Music, VK. Экспорт/импорт закладок, RU/EN.</p>
+        
+        <a href="https://github.com/blog1703/Steam-Overlay-SpeedDial" class="github-btn" target="_blank">📦 GitHub — скачать проект</a>
+        
+        <hr>
+        
+        <h2>🛠️ Установка</h2>
+        
+        <h3>1️⃣ Сохраните файл</h3>
+        <p>Скачайте или скопируйте файл <code>dashboard.html</code> и сохраните его в удобном месте.<br>
+        <em>Пример:</em> создайте папку <code>SteamOverlayDashboard</code> в «Моих документах»:</p>
+        <pre><code>C:\Users\ИМЯ_ПОЛЬЗОВАТЕЛЯ\Documents\SteamOverlayDashboard\dashboard.html</code></pre>
+        
+        <h3>2️⃣ Скопируйте путь к файлу</h3>
+        <p>Нажмите правой кнопкой мыши на <code>dashboard.html</code> → выберите <strong>«Копировать как путь»</strong>.<br>
+        У вас получится строка вроде:</p>
+        <pre><code>C:\Users\PC\Documents\SteamOverlayDashboard\dashboard.html</code></pre>
+        
+        <h3>3️⃣ Закройте Steam</h3>
+        <blockquote>⚠️ <strong>Важно:</strong> Steam должен быть <strong>полностью закрыт</strong>, иначе изменения в файле настроек не сохранятся.</blockquote>
+        
+        <h3>4️⃣ Откройте файл настроек Steam</h3>
+        <p>Перейдите по пути:</p>
+        <pre><code>C:\Program Files (x86)\Steam\userdata\XXXXXXXX\config\localconfig.vdf</code></pre>
+        <ul>
+            <li><code>XXXXXXXX</code> — ваша папка с цифрами (Steam ID)</li>
+            <li>Откройте файл <strong>Блокнотом</strong> или <strong>Notepad++</strong></li>
+        </ul>
+        
+        <h3>5️⃣ Добавьте строку с домашней страницей</h3>
+        <p>Найдите строку <code>"GameOverlayHomePage"</code> и вместо <code>"https://www.google.com/"</code> вставьте:</p>
+        <pre><code>"GameOverlayHomePage" "file:/C:/Users/ИМЯ_ПОЛЬЗОВАТЕЛЯ/Documents/SteamOverlayDashboard/dashboard.html"</code></pre>
+        
+        <img src="https://raw.githubusercontent.com/blog1703/Steam-Overlay-Dashboard/refs/heads/main/images/screenshot.jpg" alt="Строка кода для замены">
+        <p><em>строка кода где нужно сделать замену</em></p>
+        
+        <p>🔑 <strong>Главный секрет:</strong><br>
+        В начале пути используйте <strong>один слеш</strong> — <code>file:/</code>, а не три (<code>file:///</code>).<br>
+        Steam Overlay блокирует <code>file:///</code>, но <strong>не блокирует</strong> <code>file:/</code>.</p>
+        
+        <h3>6️⃣ Сохраните файл и закройте редактор</h3>
+        
+        <h3>7️⃣ Запустите Steam и проверьте</h3>
+        <ul>
+            <li>Запустите любую игру с поддержкой оверлея (Shift+Tab)</li>
+            <li>Откройте браузер в оверлее — вы увидите свою новую домашнюю страницу</li>
+            <li>Если страница не открылась автоматически, нажмите на иконку домика 🏠</li>
+        </ul>
+        
+        <h3>Вот так будет выглядеть Домашняя страница</h3>
+        <img src="https://raw.githubusercontent.com/blog1703/Steam-Overlay-SpeedDial/refs/heads/main/images/view_speedial.gif" alt="Демонстрация работы Steam Speed Dial">
+        <p><em>Домашняя страница в браузере Steam</em></p>
+        
+        <hr>
+        
+        <h2>🎨 Кастомизация</h2>
+        <p>Файл <code>dashboard.html</code> можно редактировать как угодно:</p>
+        <ul>
+            <li>➕ Добавлять свои сайты в плитки</li>
+            <li>🎵 Менять радиостанции</li>
+            <li>🎨 Изменять цвета, шрифты, анимации</li>
+            <li>🌐 Добавлять новые иконки сервисов</li>
+        </ul>
+        <p>Виджет погоды в данном виде получен на сайте <a href="https://elfsight.com" target="_blank">elfsight.com</a> после регистрации.<br>
+        Замените ID в коде на свой в строчке:</p>
+        <img src="https://raw.githubusercontent.com/blog1703/Steam-Overlay-Dashboard/refs/heads/main/images/id_widget.png" alt="ID виджета Elfsight">
+        <p><em>ID Widget сменить на свой после регистрации</em></p>
+        <p>В целом можно поставить любой виджет погоды не обязательно с этого сайта.</p>
+        <p>Всё находится внутри одного файла — изменять его очень просто, можно с помощью Chat GPT, DeepSeek.</p>
+        
+        <hr>
+        
+        <h2>➕ Добавление новых иконок быстрых ссылок</h2>
+        <p>В панели иконок (Telegram, Discord, YouTube Music, Yandex Music, VK) можно легко добавить любой сервис.</p>
+        
+        <h3>📌 Ссылка на GitHub проект где можно скачать шаблон</h3>
+        <p><a href="https://github.com/blog1703/Steam-Overlay-SpeedDial" target="_blank">https://github.com/blog1703/Steam-Overlay-SpeedDial</a></p>
+        
+        <hr>
+        
+        <h2>💡 Авторская заметка</h2>
+        <p>Файл можно настраивать под себя: менять иконки, добавлять свои виджеты, менять цветовую схему.<br>
+        Если вы захотите поделиться своим вариантом или улучшить проект — добро пожаловать в открытый исходный код.</p>
+        
+        <p><strong>Приятного использования!</strong> 🎮</p>
+        
+        <div class="footer">
+            <p>© 2025 blog1703 · Проект с открытым исходным кодом · <a href="https://github.com/blog1703/Steam-Overlay-SpeedDial" target="_blank">GitHub</a></p>
+        </div>
+    </div>
+</body>
+</html>
